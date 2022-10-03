@@ -50,7 +50,9 @@ const NotImplemented: LayoutComponent = ({ config }) => (
 );
 
 export const getHtml = (config: IConfig & ILayoutConfig) => {
-  const layout = layouts.find(l => l.name === config.layoutName);
+  const layout = layouts.find(l => {
+    return l.name === config.layoutName;
+  });
 
   const rendered = ReactDOMServer.renderToString(
     layout?.Component != null ? (

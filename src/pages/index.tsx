@@ -156,6 +156,11 @@ export const Viewer: React.FC = () => {
     return searchParams.toString();
   }, [config, layoutConfig]);
 
+  console.log(
+    `🍀 \n | 🍄 file: index.tsx \n | 🍄 line 158 \n | 🍄 query \n | 🍄 query`,
+    query,
+  );
+
   const imageURL = useMemo(() => `/api/image?${query}`, [query]);
   const htmlURL = useMemo(() => `/api/html?${query}`, [query]);
 

@@ -5,15 +5,26 @@ import { getHtml } from "./_lib/template";
 
 const isDev = !process.env.RAILWAY_STATIC_URL;
 
+const FAKE_API_URL = "http://localhost:8888";
+
+const getPageDetails = async id => {
+  const res = await fetch(`${FAKE_API_URL}/claim/${id}`);
+  const data = await res.json();
+  return data;
+};
 const handler: NextApiHandler = async (req, res) => {
   try {
-    const config = parseRequest(req);
+    let config = parseRequest(req);
+    const pageDetails = await getPageDetails(config.slug);
+
+    config = { ...config, ...pageDetails };
+
     console.log("\n\n--- /api/image");
     console.log("CONFIG", config);
-
     const html = getHtml(config);
     const { fileType } = config;
     const file = await getScreenshot(html, fileType, isDev);
+
     res.statusCode = 200;
     res.setHeader("Content-Type", `image/${fileType}`);
     res.setHeader(
