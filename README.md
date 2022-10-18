@@ -29,7 +29,7 @@ Images are generated through the `/api/image` route. When you hit this route the
 ## Layouts
 
 This service can generate images using multiple _layouts_. A layout is defined as a
-- Collection of properties that are user configurable. The UI for these properties is auto genearted
+- Collection of properties that are user configurable. The UI for these properties is auto generated
 - Function that takes in layout config and returns CSS needed to render
 - A React component that takes in layout config as a prop
 
